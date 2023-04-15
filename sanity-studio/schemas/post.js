@@ -52,4 +52,19 @@ export default {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'comments.0.comment',
+      authorName: 'author.name',
+      authorUsername: 'author.username',
+      media: 'photo',
+    },
+    prepare({title, authorName, authorUsername, media}) {
+      return {
+        title,
+        subtitle: `${authorName} (@${authorUsername})`,
+        media,
+      }
+    },
+  },
 }
