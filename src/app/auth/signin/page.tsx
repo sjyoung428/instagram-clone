@@ -20,12 +20,10 @@ const SignInPage = async ({
     redirect("/");
   }
 
-  console.log(callbackUrl, "123");
-
   const providers = (await getProviders()) ?? {};
 
   return (
-    <section className="flex justify-center mt-[30%]">
+    <section className="flex justify-center mt-24">
       <Signin providers={providers} callbackUrl={callbackUrl ?? "/"} />
     </section>
   );
