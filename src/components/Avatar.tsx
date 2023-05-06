@@ -11,7 +11,9 @@ const Avatar = ({ image, size = "normal", highlight = false }: AvatarProps) => {
     <div className={getContainerStyle(size, highlight)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        className={`bg-white rounded-full ${getImageSizeStyle(size)}`}
+        className={`bg-white object-cover rounded-full ${getImageSizeStyle(
+          size
+        )}`}
         alt="user profile"
         src={image ?? undefined}
         referrerPolicy="no-referrer" // 외부 링크 이미지 엑스박스 뜨는거 방지
