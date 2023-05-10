@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { SimplePost } from "~/models/post";
 import Avatar from "./Avatar";
 import Image from "next/image";
 import CommentForm from "./CommentForm";
 import ActionBar from "./ActionBar";
+import ModalPortal from "./ui/ModalPortal";
+import PostModal from "./PostModal";
 
 interface PostListCardProps {
   post: SimplePost;
@@ -12,6 +16,7 @@ interface PostListCardProps {
 
 const PostListCard = ({ post, priority = false }: PostListCardProps) => {
   const { userImage, username, image, createAt, likes, text } = post;
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <article className="rounded-lg shadow-md border border-gray-200">
@@ -26,6 +31,7 @@ const PostListCard = ({ post, priority = false }: PostListCardProps) => {
         width={500}
         height={500}
         priority={priority}
+        onClick={() => setOpenModal(true)}
       />
       <ActionBar
         likes={likes}
@@ -34,6 +40,13 @@ const PostListCard = ({ post, priority = false }: PostListCardProps) => {
         createAt={createAt}
       />
       <CommentForm />
+      {openModal && (
+        <ModalPortal>
+          <PostModal onClose={() => setOpenModal(false)}>
+            <p>post detail</p>
+          </PostModal>
+        </ModalPortal>
+      )}
     </article>
   );
 };
