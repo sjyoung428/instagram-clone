@@ -19,7 +19,7 @@ const PostModal = ({ children, onClose }: PostModalProps) => {
       <button className="fixed top-0 right-0 p-8 text-white" onClick={onClose}>
         <CloseIcon />
       </button>
-      {children}
+      <div className="bg-white w-4/5 h-3/5 max-w-7xl">{children}</div>
     </section>
   );
 };
