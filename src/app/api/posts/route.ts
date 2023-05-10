@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { getUserByUsername } from "~/service/user";
+import { getFollowingPostsOf } from "~/service/posts";
 
 export const GET = async () => {
   const session = await getServerSession(authOptions);
@@ -12,7 +11,7 @@ export const GET = async () => {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  return getUserByUsername(user.username).then((data) =>
+  return getFollowingPostsOf(user.username).then((data) =>
     NextResponse.json(data)
   );
 };
