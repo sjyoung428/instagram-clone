@@ -2,19 +2,16 @@ import React from "react";
 import { SimplePost } from "~/models/post";
 import Avatar from "./Avatar";
 import Image from "next/image";
-import HeartIcon from "./ui/icons/HeartIcon";
-import BookmarkIcon from "./ui/icons/BookmarkIcon";
-import { parseDate } from "~/utils/date";
 import CommentForm from "./CommentForm";
 import ActionBar from "./ActionBar";
 
 interface PostListCardProps {
   post: SimplePost;
+  priority?: boolean;
 }
 
-const PostListCard = ({ post }: PostListCardProps) => {
+const PostListCard = ({ post, priority = false }: PostListCardProps) => {
   const { userImage, username, image, createAt, likes, text } = post;
-  console.log(createAt);
 
   return (
     <article className="rounded-lg shadow-md border border-gray-200">
@@ -28,6 +25,7 @@ const PostListCard = ({ post }: PostListCardProps) => {
         alt={`photo by ${username}`}
         width={500}
         height={500}
+        priority={priority}
       />
       <ActionBar
         likes={likes}
