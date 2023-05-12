@@ -2,12 +2,15 @@
 
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
+import usePortal from "~/hooks/usePortal";
 
 interface ModalPortalProps {
   children: React.ReactNode;
 }
 
 const ModalPortal = ({ children }: ModalPortalProps) => {
+  const node = usePortal("modal");
+
   useEffect(() => {
     const originStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
@@ -16,9 +19,8 @@ const ModalPortal = ({ children }: ModalPortalProps) => {
     };
   }, []);
 
-  if (typeof window === "undefined") return null;
+  if (!node) return null;
 
-  const node = document.getElementById("portal") as Element;
   return createPortal(children, node);
 };
 
